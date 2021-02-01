@@ -1,10 +1,4 @@
-from flask import Flask, render_template
-from sassutils.wsgi import SassMiddleware
+from qpfApp import app 
 
-app = Flask(__name__)
-app.wsgi_app = SassMiddleware(app.wsgi_app,{'prolificApp':("static/styles", "static/styles", "/static/styles")})
-app.config['SECRET_KEY'] = 'mysecretkey'
-
-@app.route('/')
-def home():
-	return render_template("index.html")
+if __name__ == '__main__':
+	app.run(debug=True)

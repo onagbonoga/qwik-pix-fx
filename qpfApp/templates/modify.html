@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+<img src="{{url_for('static', filename = 'pictures/' + pic) }}">
+<br>
+<a href="{{url_for('Core.home')}}">home</a>
+{% endblock %}

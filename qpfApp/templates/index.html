@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class = "d-flex justify-content-center" style = "transform: translateY(50%);">
+	<div class = "card shadow" style="width: 35rem;">
+		<div class = "card-body">
+			<form method = "POST" enctype="multipart/form-data">
+
+				{# This hidden_tag is a CSRF security feature. #}
+			    {{ form.hidden_tag() }}
+			    <br>
+			    {{ form.picture.label }}
+			    <br>
+			    {{ form.picture(class="form-control") }}
+			    <br>
+			    {{ form.submit(class="btn btn-primary") }}
+
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
