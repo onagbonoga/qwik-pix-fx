@@ -23,12 +23,21 @@
 </ul>
 
 
-	<canvas id= "myCanvas" width="700" height="450" >
+	<canvas id= "myCanvas" width="1000%" height="800%" >
 	</canvas>
+
+	<a>Zoom in</a>
+	<a>Zoom out</a>
 	<br>
+	<div class = "card shadow" style="width: 35rem;">
+			<div class = "card-body">
+					<a class= "btn btn-primary" onclick="ZoomOut()">Zoom Out</a>
+					<a class= "btn btn-primary" onclick="ZoomIn()">Zoom In</a>
+			</div>
+	</div>
 
+	<a href="{{url_for('Core.home')}}">home</a>
 
-<a href="{{url_for('Core.home')}}">home</a>
 <script type="text/javascript">
 drawImage();
 
