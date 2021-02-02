@@ -1,6 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
-<img src="{{url_for('static', filename = 'pictures/' + pic) }}">
-<br>
+<script src = "{{ url_for('static', filename = 'js/stuff.js') }}"></script>
+
+	<div id = "imageContainer">
+		<img id = "myImage" src="{{url_for('static', filename = 'pictures/' + pic) }}">
+	</div>
+
+
+<ul class="nav navbar-dark flex-column float-sm-start">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#">Active</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+  </li>
+</ul>
+
+
+	<canvas id= "myCanvas" width="700" height="450" >
+	</canvas>
+	<br>
+
+
 <a href="{{url_for('Core.home')}}">home</a>
+<script type="text/javascript">
+drawImage();
+
+</script>
+
 {% endblock %}
