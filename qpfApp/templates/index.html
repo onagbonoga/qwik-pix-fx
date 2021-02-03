@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-<h1 style="color:yellow;">Hello world</h1>
 <div class = "d-flex justify-content-center" style = "transform: translateY(50%);">
 	<div class = "card shadow" style="width: 35rem;">
 		<div class = "card-body">
+			<img src="{{ url_for('static',filename='images/logo1.svg') }}" width="90" height="70" alt="food access logo" loading="lazy"></a>
 			<form method = "POST" enctype="multipart/form-data">
 
 				{# This hidden_tag is a CSRF security feature. #}

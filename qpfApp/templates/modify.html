@@ -11,32 +11,41 @@
   <li class="nav-item">
     <a class="nav-link active" aria-current="page" href="#">Active</a>
   </li>
+  
   <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
+    <a onclick="ZoomIn()" href="#"><img class ="zooms" width="40" height="40" src="{{ url_for('static',filename='images/zoomIn.svg') }}"></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
+    <a onclick="ZoomOut()" href="#"><img class ="zooms" width="40" height="40" src="{{ url_for('static',filename='images/zoomOut.svg') }}"></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+    <a href="{{url_for('static', filename = 'pictures/' + pic) }}" download><img class ="zooms" width="40" height="40" src="{{ url_for('static',filename='images/download.svg') }}"></a>
   </li>
+  
 </ul>
+
 
 
 	<canvas id= "myCanvas" width="1000%" height="800%" >
 	</canvas>
+	
 
-	<a>Zoom in</a>
-	<a>Zoom out</a>
-	<br>
-	<div class = "card shadow" style="width: 35rem;">
-			<div class = "card-body">
-					<a class= "btn btn-primary" onclick="ZoomOut()">Zoom Out</a>
-					<a class= "btn btn-primary" onclick="ZoomIn()">Zoom In</a>
-			</div>
-	</div>
-
-	<a href="{{url_for('Core.home')}}">home</a>
+<ul class="nav navbar-dark flex-column float-sm-end">
+  <li class="nav-item bg-dark">
+    <h2 style="color:white;">Mods</h2>
+  </li>
+  
+  <li class="nav-item">
+    <a onclick="ZoomIn()" href="#"><img class ="zooms" width="40" height="40" src="{{ url_for('static',filename='images/zoomIn.svg') }}"></a>
+  </li>
+  <li class="nav-item">
+    <a onclick="ZoomOut()" href="#"><img class ="zooms" width="40" height="40" src="{{ url_for('static',filename='images/zoomOut.svg') }}"></a>
+  </li>
+  <li class="nav-item">
+    <a href="{{url_for('static', filename = 'pictures/' + pic) }}" download><img class ="zooms" width="40" height="40" src="{{ url_for('static',filename='images/download.svg') }}"></a>
+  </li>
+  
+</ul>
 
 <script type="text/javascript">
 drawImage();

@@ -1,5 +1,5 @@
 .notJumbotron{
-	padding: 0rem 1rem;
+	padding: 0rem 0rem 1rem 1rem;
 	margin-bottom: 2rem;
  	background-color: #3b3b3d;
   	border-radius: 0.3rem; }
@@ -17,6 +17,19 @@
 	background-color: white;
 }
 
+.zooms:hover{
+	/*background-color: #636366;*/
+	filter: invert(100%);
+	transition: .5s ease;
+}
+
+.zooms{
+	border-radius: 6px;
+}
+
+.modifiers{
+	float:right;
+}
 
 
 
