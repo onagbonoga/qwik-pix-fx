@@ -1,5 +1,5 @@
 .notJumbotron{
-	padding: 0rem 0rem 1rem 1rem;
+	padding: 0rem 0rem 2px 5px;
 	margin-bottom: 2rem;
  	background-color: #3b3b3d;
   	border-radius: 0.3rem; }
@@ -7,14 +7,13 @@
 }
 
 .canvas{
-	width: 100px;
-	height: 100px;
-	background: #000000;
 	border: 5px dashed #f7a239;
 }
+
 #myCanvas{
-	
-	background-color: white;
+	/*width: 80%;
+	height: 60%;*/
+	background-color: #FFFFFF;
 }
 
 .zooms:hover{
@@ -31,5 +30,57 @@
 	float:right;
 }
 
+.cw-10 {
+  width: 15% !important;
+  float:left;
+}
+
+.cw-5 {
+  width: 2% !important;
+  
+}
+
+.t-color1{
+	color: #E1E3E6;
+}
+
+.leOptions{
+	background-color: #4d4e4f;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 15px; 
+}
+
+.leOptions-a{
+	text-decoration: none;
+	color:#E1E3E6;
+	
+	display:block;
+}
+
+.leOptions:hover{
+	background-color: #6f7173;
+	transition: .3s ease;
+}
+
+.leOptions1{
+	background-color: #4d4e4f;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	
+}
+
+.leOptions1 a,p{
+	text-decoration: none;
+	color:#E1E3E6;
+	padding-left: 15px; 
+	
+}
+
+
+.leOptions1:hover{
+	background-color: #6f7173;
+	transition: .3s ease;
+}
 
 

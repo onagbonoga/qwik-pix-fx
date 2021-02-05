@@ -1,5 +1,5 @@
 import os
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
 from flask import url_for, current_app
 
 def upload_pic(pic_upload, name):
@@ -16,3 +16,14 @@ def upload_pic(pic_upload, name):
 	pic.save(filepath)
 
 	return storage_filename
+
+def mod_pic(command, pic):
+	filepath = os.path.join(current_app.root_path,'static/pictures', pic)
+	pic = Image.open(filepath)
+	
+	if command == "blur plus":
+		pic = pic.filter(ImageFilter.GaussianBlur(5))
+
+	pic.show()
+	pic.save(filepath)
+

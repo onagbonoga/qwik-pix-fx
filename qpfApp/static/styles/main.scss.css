@@ -1,6 +1,10 @@
 .navbar {
   background-color: #19191a; }
 
+.accordion-button {
+  height: 5%;
+  color: #E1E3E6; }
+
 /*!
  * Bootstrap v5.0.0-beta1 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
@@ -3216,8 +3220,8 @@ textarea.form-control-lg {
   width: 100%;
   padding: 1rem 1.25rem;
   font-size: 1rem;
-  color: #212529;
-  background-color: transparent;
+  color: #FFFFFF;
+  background-color: #4d4e4f;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0;
   overflow-anchor: none;
@@ -3276,7 +3280,7 @@ textarea.form-control-lg {
   border-width: 0 1px; }
 
 .accordion-body {
-  padding: 1rem 1.25rem; }
+  padding: 0px 0px; }
 
 .accordion-flush .accordion-button {
   border-right: 0;
