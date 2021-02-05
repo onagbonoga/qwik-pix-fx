@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+
 <script src = "{{ url_for('static', filename = 'js/stuff.js') }}"></script>
 
 	<div id = "imageContainer">
@@ -107,7 +108,8 @@
 </ul>-->
 
 <script type="text/javascript">
-drawImage();
+	filename = "{{ pic }}"
+	drawImage(filename);
 
 
 

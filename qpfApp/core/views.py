@@ -1,3 +1,4 @@
+import os
 from flask import Blueprint, render_template, session
 from qpfApp.core.forms import UploadForm
 from qpfApp.core.picture_handler import upload_pic, mod_pic
@@ -5,6 +6,7 @@ core_app = Blueprint('Core', __name__)
 
 @core_app.route('/', methods= ('GET', 'POST'))
 def home():
+
 	form = UploadForm()
 	if form.validate_on_submit():
 		if form.picture.data:
@@ -24,4 +26,5 @@ def add_header(response):
 	# response.cache_control.no_store = True
 	if 'Cache-Control' not in response.headers:
 		response.headers['Cache-Control'] = 'no-store'
-	return response
+	return response 
+	
