@@ -2,6 +2,7 @@ import os
 from flask import Blueprint, render_template, session
 from qpfApp.core.forms import UploadForm
 from qpfApp.core.picture_handler import upload_pic, mod_pic
+from decimal import Decimal 
 core_app = Blueprint('Core', __name__)
 
 @core_app.route('/', methods= ('GET', 'POST'))
@@ -10,6 +11,8 @@ def home():
 	form = UploadForm()
 	if form.validate_on_submit():
 		if form.picture.data:
+			session["blur_level"] = 0
+			session["brightness_level"] = 1
 			pic = upload_pic(form.picture.data,"test")
 			session["current_pic"] = pic
 			return render_template("modify.html", pic = pic)
@@ -17,6 +20,7 @@ def home():
 
 @core_app.route('/edit/<selection>', methods= ('GET', 'POST'))
 def edit(selection):
+
 	pic = session["current_pic"]
 	mod_pic(selection, pic)
 	return f" this is a message from your server {selection}", 200
@@ -27,4 +31,3 @@ def add_header(response):
 	if 'Cache-Control' not in response.headers:
 		response.headers['Cache-Control'] = 'no-store'
 	return response 
-	

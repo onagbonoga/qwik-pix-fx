@@ -30,6 +30,8 @@
 
 		<a onclick="ZoomIn()" href="#"><img class ="zooms" width="30" height="30" src="{{ url_for('static',filename='images/zoomIn.svg') }}"></a>
 
+		<a onclick="edit('refresh')" href="#"><img class ="zooms" width="30" height="30" src="{{ url_for('static',filename='images/refresh.png') }}"></a>
+
 	</div>
 
 	<div class="accordion-item">
@@ -43,10 +45,16 @@
 	      <div class="accordion-body">
 	       <a onclick="edit('edge enhance')" href="#" class="leOptions-a"><div class="leOptions">Edge enhance</div></a>
 	       <a onclick="edit('sharpen')" href="#" class="leOptions-a"><div class="leOptions">Sharpen</div></a>
-	       <a onclick="edit(1)" href="#" class="leOptions-a"><div class="leOptions">Sharpen2</div></a>
-	       <div class="leOptions1"><p class="leFloat">Blur</p>
-	       	<a onclick="edit('blur minus')" href="#"><img class ="zooms" width="15" height="15" src="{{ url_for('static',filename='images/minus.svg') }}"></a>
-	       <a onclick="edit('blur plus')" href="#"><img class ="zooms" width="15" height="15" src="{{ url_for('static',filename='images/plus.svg') }}"></a></div>
+	       <div class="leOptions1">
+	       		<p class="leFloat">Blur</p>
+		       	<a onclick="edit('blur minus')" href="#"><img class ="zooms" width="15" height="15" src="{{ url_for('static',filename='images/minus.svg') }}"></a>
+		       <a onclick="edit('blur plus')" href="#"><img class ="zooms" width="15" height="15" src="{{ url_for('static',filename='images/plus.svg') }}"></a>
+	   		</div>
+	   		<div class="leOptions1">
+	       		<p class="leFloat">Brighness</p>
+		       	<a onclick="edit('brighness minus')" href="#"><img class ="zooms" width="15" height="15" src="{{ url_for('static',filename='images/minus.svg') }}"></a>
+		       <a onclick="edit('brightness plus')" href="#"><img class ="zooms" width="15" height="15" src="{{ url_for('static',filename='images/plus.svg') }}"></a>
+	   		</div>
 	       <a onclick="edit(1)" href="#" class="leOptions-a"><div class="leOptions">Sharpen</div></a>
 	       <a onclick="edit(1)" href="#" class="leOptions-a"><div class="leOptions">Sharpen</div></a>
 	      </div>
