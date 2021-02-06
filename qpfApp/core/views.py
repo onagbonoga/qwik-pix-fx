@@ -1,7 +1,7 @@
 import os
 from flask import Blueprint, render_template, session
 from qpfApp.core.forms import UploadForm
-from qpfApp.core.picture_handler import upload_pic, mod_pic
+from qpfApp.core.picture_handler import upload_pic, mod_pic, set_attributes
 from decimal import Decimal 
 core_app = Blueprint('Core', __name__)
 
@@ -31,8 +31,3 @@ def add_header(response):
 		response.headers['Cache-Control'] = 'no-store'
 	return response 
 
-def set_attributes():
-	session["blur_level"] = 0
-	session["brightness_level"] = 1.0
-	session["sharpness_level"] = 1.0
-	session["contrast_level"] = 1.0
