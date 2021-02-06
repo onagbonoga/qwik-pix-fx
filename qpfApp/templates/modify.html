@@ -7,21 +7,6 @@
 		<img id = "myImage" src="{{url_for('static', filename = 'pictures/' + pic) }}">
 	</div>
 
-
-<!--<ul class="nav navbar-dark flex-column float-sm-start cw-5">
-  
-  <li class="nav-item">
-    <a onclick="ZoomIn()" href="#"><img class ="zooms" width="30" height="30" src="{{ url_for('static',filename='images/zoomIn.svg') }}"></a>
-  </li>
-  <li class="nav-item">
-    <a onclick="ZoomOut()" href="#"><img class ="zooms" width="30" height="30" src="{{ url_for('static',filename='images/zoomOut.svg') }}"></a>
-  </li>
-  <li class="nav-item">
-    <a href="{{url_for('static', filename = 'pictures/' + pic) }}" download><img class ="zooms" width="30" height="30" src="{{ url_for('static',filename='images/download.svg') }}"></a>
-  </li>
-  
-</ul>-->
-
 <div class="accordion cw-10" id="accordionExample">
 	<div class="accordion-item d-flex justify-content-center">
 		<a href="{{url_for('static', filename = 'pictures/' + pic) }}" download><img class ="zooms" width="30" height="30" src="{{ url_for('static',filename='images/download.svg') }}"></a>
@@ -40,21 +25,37 @@
 	        Adjust
 	      </button>
 	    </h2>
-	    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+	    <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 	    
 	      <div class="accordion-body">
 	       <a onclick="edit('edge enhance')" href="#" class="leOptions-a"><div class="leOptions">Edge enhance</div></a>
 	       <a onclick="edit('sharpen')" href="#" class="leOptions-a"><div class="leOptions">Sharpen</div></a>
+
 	       <div class="leOptions1">
 	       		<p class="leFloat">Blur</p>
 		       	<a onclick="edit('blur minus')" href="#"><img class ="zooms" width="15" height="15" src="{{ url_for('static',filename='images/minus.svg') }}"></a>
 		       <a onclick="edit('blur plus')" href="#"><img class ="zooms" width="15" height="15" src="{{ url_for('static',filename='images/plus.svg') }}"></a>
 	   		</div>
+
 	   		<div class="leOptions1">
 	       		<p class="leFloat">Brighness</p>
-		       	<a onclick="edit('brighness minus')" href="#"><img class ="zooms" width="15" height="15" src="{{ url_for('static',filename='images/minus.svg') }}"></a>
+		       	<a onclick="edit('brightness minus')" href="#"><img class ="zooms" width="15" height="15" src="{{ url_for('static',filename='images/minus.svg') }}"></a>
 		       <a onclick="edit('brightness plus')" href="#"><img class ="zooms" width="15" height="15" src="{{ url_for('static',filename='images/plus.svg') }}"></a>
+
 	   		</div>
+	   			<div class="leOptions1">
+	       		<p class="leFloat">Contrast</p>
+		       	<a onclick="edit('contrast minus')" href="#"><img class ="zooms" width="15" height="15" src="{{ url_for('static',filename='images/minus.svg') }}"></a>
+		       <a onclick="edit('contrast plus')" href="#"><img class ="zooms" width="15" height="15" src="{{ url_for('static',filename='images/plus.svg') }}"></a>
+	   		</div>
+
+	   		
+	   			<div class="leOptions1">
+	       		<p class="leFloat">Shapness</p>
+		       	<a onclick="edit('sharpness minus')" href="#"><img class ="zooms" width="15" height="15" src="{{ url_for('static',filename='images/minus.svg') }}"></a>
+		       <a onclick="edit('sharpness plus')" href="#"><img class ="zooms" width="15" height="15" src="{{ url_for('static',filename='images/plus.svg') }}"></a>
+	   		</div>
+
 	       <a onclick="edit(1)" href="#" class="leOptions-a"><div class="leOptions">Sharpen</div></a>
 	       <a onclick="edit(1)" href="#" class="leOptions-a"><div class="leOptions">Sharpen</div></a>
 	      </div>
@@ -67,7 +68,7 @@
         Effects
       </button>
     </h2>
-    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+    <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
       <div class="accordion-body">
  
         <a onclick="edit(1)" href="#" class="leOptions-a"><div class="leOptions">Filter 1</div></a>
@@ -98,22 +99,6 @@
 	</canvas>
 	
 
-<!--<ul class="nav navbar-dark flex-column float-sm-end">
-  <li class="nav-item bg-dark">
-    <h2 style="color:white;">Mods</h2>
-  </li>
-  
-  <li class="nav-item">
-    <a onclick="ZoomIn()" href="#"><img class ="zooms" width="40" height="40" src="{{ url_for('static',filename='images/zoomIn.svg') }}"></a>
-  </li>
-  <li class="nav-item">
-    <a onclick="ZoomOut()" href="#"><img class ="zooms" width="40" height="40" src="{{ url_for('static',filename='images/zoomOut.svg') }}"></a>
-  </li>
-  <li class="nav-item">
-    <a href="{{url_for('static', filename = 'pictures/' + pic) }}" download><img class ="zooms" width="40" height="40" src="{{ url_for('static',filename='images/download.svg') }}"></a>
-  </li>
-  
-</ul>-->
 
 <script type="text/javascript">
 	filename = "{{ pic }}"

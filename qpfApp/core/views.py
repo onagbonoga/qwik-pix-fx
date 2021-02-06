@@ -11,8 +11,7 @@ def home():
 	form = UploadForm()
 	if form.validate_on_submit():
 		if form.picture.data:
-			session["blur_level"] = 0
-			session["brightness_level"] = 1
+			set_attributes()
 			pic = upload_pic(form.picture.data,"test")
 			session["current_pic"] = pic
 			return render_template("modify.html", pic = pic)
@@ -31,3 +30,9 @@ def add_header(response):
 	if 'Cache-Control' not in response.headers:
 		response.headers['Cache-Control'] = 'no-store'
 	return response 
+
+def set_attributes():
+	session["blur_level"] = 0
+	session["brightness_level"] = 1.0
+	session["sharpness_level"] = 1.0
+	session["contrast_level"] = 1.0

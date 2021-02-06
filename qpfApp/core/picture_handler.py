@@ -2,7 +2,10 @@ import os
 from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
 from flask import url_for, current_app, session
 from qpfApp import app 
-from decimal import Decimal 
+from decimal import Decimal, getcontext
+
+#getcontext().prec = 1
+
 
 def upload_pic(pic_upload, name):
 	filename = pic_upload.filename
@@ -30,12 +33,11 @@ def mod_pic(command, pic):
 	brightness_level = 0
 	if command == "blur plus":
 		session["blur_level"] = session["blur_level"] + 1
-		#pic = pic.filter(ImageFilter.GaussianBlur(1))
-		pic = original_pic.filter(ImageFilter.GaussianBlur(session["blur_level"]))
+		#pic = original_pic.filter(ImageFilter.GaussianBlur(session["blur_level"]))
 
 	if command == "blur minus":
 		session["blur_level"] = session["blur_level"] - 1
-		pic = original_pic.filter(ImageFilter.GaussianBlur(session["blur_level"]))
+		#pic = original_pic.filter(ImageFilter.GaussianBlur(session["blur_level"]))
 
 	if command == "sharpen":
 		pic = pic.filter(ImageFilter.SHARPEN)
@@ -45,24 +47,46 @@ def mod_pic(command, pic):
 
 	if command == "refresh":
 		session["blur_level"] = 0
-		session["brightness_level"] = 1
+		session["brightness_level"] = 1.0
+		session["sharpness_level"] = 1.0
+		session["contrast_level"] = 1.0
 		pic = original_pic
 
 	if command == "brightness plus":
-		session["brightness_level"] = round(session["brightness_level"] + 0.1,1)
-		pic = original_pic
+		session["brightness_level"] = round(float(Decimal(session["brightness_level"]) + Decimal(0.1)),1)
+		'''pic = original_pic
 		enhancer = ImageEnhance.Brightness(pic)
-		pic = enhancer.enhance(session["brightness_level"])
+		pic = enhancer.enhance(session["brightness_level"])'''
 
 	if command == "brightness minus":
-		session["brightness_level"] = round(session["brightness_level"] - 0.1,1)
+		session["brightness_level"] = round(float(Decimal(session["brightness_level"]) - Decimal(0.1)),1)
 		#brightness_level = str(session["brightness_level"])
 		#brightness_level = float(brightness_level)
-		pic = original_pic
+		'''pic = original_pic
 		enhancer = ImageEnhance.Brightness(pic)
-		pic = enhancer.enhance(session["brightness_level"])
+		pic = enhancer.enhance(session["brightness_level"])'''
 
-	print(session["brightness_level"])
+	if command == "contrast plus":
+		session["contrast_level"] = round(float(Decimal(session["contrast_level"]) + Decimal(0.1)),1)
+
+	if command == "contrast minus":
+		session["contrast_level"] = round(float(Decimal(session["contrast_level"]) - Decimal(0.1)),1)
+
+	if command == "sharpness plus":
+		session["sharpness_level"] = round(float(Decimal(session["sharpness_level"]) + Decimal(0.1)),1)
+
+	if command == "sharpness minus":
+		session["sharpness_level"] = round(float(Decimal(session["sharpness_level"]) - Decimal(0.1)),1)
+
+	#apply modifications
+	pic = original_pic.filter(ImageFilter.GaussianBlur(session["blur_level"]))
+	enhancer = ImageEnhance.Brightness(pic)
+	pic = enhancer.enhance(session["brightness_level"])
+	enhancer = ImageEnhance.Sharpness(pic)
+	pic = enhancer.enhance(session["sharpness_level"])
+	enhancer = ImageEnhance.Contrast(pic)
+	pic = enhancer.enhance(session["contrast_level"])
+	#print(session["brightness_level"])
 	#pic.show()
 	pic.save(filepath)
 
