@@ -106,8 +106,7 @@ def mod_pic(command, pic):
 	pic = enhancer.enhance(session["saturation_level"])
 
 
-	#if command == "horizontal flip":
-		#pic = ImageOps.mirror(pic)
+	#im putting these effects at this point in the file so adding one of the effects below wont overwrite any of the effects above
 
 	if session["vertical_flip"] == 1:
 		pic = ImageOps.flip(pic)

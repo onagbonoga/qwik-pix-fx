@@ -12,4 +12,16 @@ $accordion-button-color: #FFFFFF;
 $accordion-button-bg: #4d4e4f;
 $accordion-body-padding-x: 0px;
 $accordion-body-padding-y: 0px;
+$accordion-border-radius: 3px;
+
+$primary:#4d4e4f;
+@font-face{
+	font-family: myFont;
+	//src:url('../TecoSerif-Bold.otf');
+
+	src:url('../fonts/Vertiky.otf');
+}
+
+$font-family-base:myFont;
+
 @import "../bootstrap/scss/bootstrap";
