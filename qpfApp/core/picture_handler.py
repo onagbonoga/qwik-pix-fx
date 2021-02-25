@@ -2,7 +2,8 @@ import os
 from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance, ImageOps
 from flask import url_for, current_app, session
 from qpfApp import app 
-from decimal import Decimal, getcontext
+import numpy as np
+
 
 #getcontext().prec = 1
 
@@ -93,6 +94,13 @@ def mod_pic(command, pic):
 	if command == "invert":
 		session["invert"] ^= 1
 
+	if command == "filter1":
+		if session["filter"] == 1:
+			session["filter"] = 0
+		else:
+			session["filter"] = 1
+
+
 
 	#apply modifications
 	pic = original_pic.filter(ImageFilter.GaussianBlur(session["blur_level"]))
@@ -104,9 +112,9 @@ def mod_pic(command, pic):
 	pic = enhancer.enhance(session["contrast_level"])
 	enhancer = ImageEnhance.Color(pic)
 	pic = enhancer.enhance(session["saturation_level"])
+	pic = applyFilter(session["filter"],pic)
 
-
-	#im putting these effects at this point in the file so adding one of the effects below wont overwrite any of the effects above
+	#i'm putting these effects at this point in the file so adding one of the effects below wont overwrite any of the effects above
 
 	if session["vertical_flip"] == 1:
 		pic = ImageOps.flip(pic)
@@ -133,4 +141,58 @@ def set_attributes():
 	session["horizontal_flip"] = 0
 	session["grayscale"] = 0
 	session["invert"] = 0
+	session["filter"] = 0 #no filter
+
+
+def applyFilter(filter,image):
+	if filter == 1:
+		pic_array = np.asarray(image) #converts the image to a numpy array
+		pic = pic_array.copy()
+		pic[:,:,2] = pic[:,:,2] + 10
+
+		for pixel in np.nditer(pic,op_flags = ['readwrite']): #iterates through the array
+			if pixel > 180:
+				pixel[...] = pixel - 20
+		finalPic = Image.fromarray(pic)
+		return finalPic
+	if filter == 0:
+		return image
+
+'''this function modifies the image values directly with numpy
+	image -> image input
+	channel -> channel to modify. valid inputs: 0,1,2 (reg green or blue)
+	section -> section to modify. Valid inputs:	B,S,M,H,W (Black, Shadows, Midtones, Highlights, White)
+	delta -> how much to change the section of the image to 
+'''
+'''def rgbMod(image,channel,section,delta):
+	if section == B:
+		val = 0
+	elif section == S:
+		val = 63
+	elif section == M:
+		val = 127
+	elif section == H:
+		val = 191
+	elif section == W:
+		val = 255
+
+	pic_array = np.asarray(image) #converts the image to a numpy array
+	pic = pic_array.copy()
+	size1 = pic.shape[0]
+	size2 = pic.shape[1]
+
+	for pixel in np.nditer(pic,op_flags = ['readwrite']): #iterates through the array
+		if pixel == val:
+			pixel[...] = pixel + delta
+		if ((pixel > val and pixel < val + 16) or (pixel > val and pixel < val  16)) and delta - 1 > 0 and delta > 0:
+			pixel[...] pixel + delta 
+
+	pic[:,:,channel] = pic[:,:,channel] + modArray(delta,size1,size2)
+
+
+this function generates a numpy array that will be added to an image
+	to modify the color values
+
+def modArray(value,size1,size2): 
+	for pixel in np.nditer()'''
 

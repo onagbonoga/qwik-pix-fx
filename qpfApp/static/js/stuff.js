@@ -3,7 +3,9 @@ var x = 2 //x is the value the width and height of the image will be divided by
 lename = "placeholder filename"
 function drawImage(filename){
 	lename = filename
-	f_name = "http://127.0.0.1:5000/static/pictures/".concat(filename)
+	//f_name = "http://127.0.0.1:5000/static/pictures/".concat(filename)
+	
+	f_name = "http://192.168.1.177:5000/static/pictures/".concat(filename)
 	var imageContainer = document.getElementById("imageContainer");
 	imageContainer.style.display = "none"
 	var c = document.getElementById("myCanvas");
