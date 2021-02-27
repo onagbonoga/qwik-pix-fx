@@ -33,13 +33,12 @@ def mod_pic(command, pic):
 	pic = Image.open(filepath)
 	original_pic = Image.open(filepath_copy)
 	brightness_level = 0
+	#based on the selection the status of each effect will be stored in the session object
 	if command == "blur plus":
 		session["blur_level"] = session["blur_level"] + 1
-		#pic = original_pic.filter(ImageFilter.GaussianBlur(session["blur_level"]))
-
+		
 	if command == "blur minus":
 		session["blur_level"] = session["blur_level"] - 1
-		#pic = original_pic.filter(ImageFilter.GaussianBlur(session["blur_level"]))
 
 	if command == "sharpen":
 		pic = pic.filter(ImageFilter.SHARPEN)
@@ -51,19 +50,12 @@ def mod_pic(command, pic):
 		set_attributes()
 		pic = original_pic
 
+		#the decimal library is being used to handle the float data types more accurately
 	if command == "brightness plus":
 		session["brightness_level"] = round(float(Decimal(session["brightness_level"]) + Decimal(0.1)),1)
-		'''pic = original_pic
-		enhancer = ImageEnhance.Brightness(pic)
-		pic = enhancer.enhance(session["brightness_level"])'''
 
 	if command == "brightness minus":
 		session["brightness_level"] = round(float(Decimal(session["brightness_level"]) - Decimal(0.1)),1)
-		#brightness_level = str(session["brightness_level"])
-		#brightness_level = float(brightness_level)
-		'''pic = original_pic
-		enhancer = ImageEnhance.Brightness(pic)
-		pic = enhancer.enhance(session["brightness_level"])'''
 
 	if command == "contrast plus":
 		session["contrast_level"] = round(float(Decimal(session["contrast_level"]) + Decimal(0.2)),1)
@@ -97,17 +89,9 @@ def mod_pic(command, pic):
 
 
 
-	'''if command == "filter1":
-		if session["filter"] == 1:
-			session["filter"] = 0
-		else:
-			session["filter"] = 1'''
 
 
-
-
-
-	#apply modifications
+	#apply modifications based on the status of each effect
 	pic = original_pic.filter(ImageFilter.GaussianBlur(session["blur_level"]))
 	enhancer = ImageEnhance.Brightness(pic)
 	pic = enhancer.enhance(session["brightness_level"])
@@ -132,10 +116,10 @@ def mod_pic(command, pic):
 
 	if session["invert"] == 1:
 		pic = ImageOps.invert(pic)
-	#print(session["brightness_level"])
-	#pic.show()
+
 	pic.save(filepath)
 
+#this function sets the default values for the effect statuses
 def set_attributes():
 	session["blur_level"] = 0
 	session["brightness_level"] = 1.0
@@ -146,49 +130,11 @@ def set_attributes():
 	session["horizontal_flip"] = 0
 	session["grayscale"] = 0
 	session["invert"] = 0
-	#session["filter"] = 0 #no filter
+
 	
 
 
 
 
 
-
-'''this function modifies the image values directly with numpy
-	image -> image input
-	channel -> channel to modify. valid inputs: 0,1,2 (reg green or blue)
-	section -> section to modify. Valid inputs:	B,S,M,H,W (Black, Shadows, Midtones, Highlights, White)
-	delta -> how much to change the section of the image to 
-'''
-'''def rgbMod(image,channel,section,delta):
-	if section == B:
-		val = 0
-	elif section == S:
-		val = 63
-	elif section == M:
-		val = 127
-	elif section == H:
-		val = 191
-	elif section == W:
-		val = 255
-
-	pic_array = np.asarray(image) #converts the image to a numpy array
-	pic = pic_array.copy()
-	size1 = pic.shape[0]
-	size2 = pic.shape[1]
-
-	for pixel in np.nditer(pic,op_flags = ['readwrite']): #iterates through the array
-		if pixel == val:
-			pixel[...] = pixel + delta
-		if ((pixel > val and pixel < val + 16) or (pixel > val and pixel < val  16)) and delta - 1 > 0 and delta > 0:
-			pixel[...] pixel + delta 
-
-	pic[:,:,channel] = pic[:,:,channel] + modArray(delta,size1,size2)
-
-
-this function generates a numpy array that will be added to an image
-	to modify the color values
-
-def modArray(value,size1,size2): 
-	for pixel in np.nditer()'''
 
