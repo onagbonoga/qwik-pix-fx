@@ -3,7 +3,8 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance, ImageOps
 from flask import url_for, current_app, session
 from qpfApp import app 
 import numpy as np
-
+from decimal import Decimal
+import cv2
 
 #getcontext().prec = 1
 
@@ -94,11 +95,15 @@ def mod_pic(command, pic):
 	if command == "invert":
 		session["invert"] ^= 1
 
-	if command == "filter1":
+
+
+	'''if command == "filter1":
 		if session["filter"] == 1:
 			session["filter"] = 0
 		else:
-			session["filter"] = 1
+			session["filter"] = 1'''
+
+
 
 
 
@@ -112,7 +117,7 @@ def mod_pic(command, pic):
 	pic = enhancer.enhance(session["contrast_level"])
 	enhancer = ImageEnhance.Color(pic)
 	pic = enhancer.enhance(session["saturation_level"])
-	pic = applyFilter(session["filter"],pic)
+	
 
 	#i'm putting these effects at this point in the file so adding one of the effects below wont overwrite any of the effects above
 
@@ -141,22 +146,13 @@ def set_attributes():
 	session["horizontal_flip"] = 0
 	session["grayscale"] = 0
 	session["invert"] = 0
-	session["filter"] = 0 #no filter
+	#session["filter"] = 0 #no filter
+	
 
 
-def applyFilter(filter,image):
-	if filter == 1:
-		pic_array = np.asarray(image) #converts the image to a numpy array
-		pic = pic_array.copy()
-		pic[:,:,2] = pic[:,:,2] + 10
 
-		for pixel in np.nditer(pic,op_flags = ['readwrite']): #iterates through the array
-			if pixel > 180:
-				pixel[...] = pixel - 20
-		finalPic = Image.fromarray(pic)
-		return finalPic
-	if filter == 0:
-		return image
+
+
 
 '''this function modifies the image values directly with numpy
 	image -> image input
