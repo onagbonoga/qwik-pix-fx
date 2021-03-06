@@ -4,7 +4,7 @@ from flask import url_for, current_app, session
 from qpfApp import app 
 import numpy as np
 from decimal import Decimal
-import cv2
+#import cv2
 
 #getcontext().prec = 1
 
